@@ -75,6 +75,27 @@
       padding: 7rem 3rem 4rem;
       overflow: hidden;
     }
+    .hero-top-row {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .hero-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid var(--coral);
+      box-shadow: 0 0 0 6px rgba(232,98,58,0.15);
+      flex-shrink: 0;
+    }
+    @media (max-width: 600px) {
+      .hero-top-row { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .hero-photo { width: 110px; height: 110px; }
+    }
     .grid-bg {
       position: absolute;
       inset: 0;
@@ -374,11 +395,25 @@
     /* RESPONSIVE */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.75rem; }
       section { padding: 4rem 1.5rem; }
       #hero { padding: 6rem 1.5rem 3rem; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .hero-stats { gap: 1.5rem; }
+      .hero-content { flex-direction: column !important; align-items: flex-start !important; gap: 1.5rem !important; }
+      .hero-content img { width: 120px !important; height: 120px !important; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .certs-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-name { font-size: 2.4rem; }
+      .nav-links { gap: 0.7rem; }
+      .nav-links a { font-size: 0.68rem; letter-spacing: 0.03em; }
+      .hero-stats { flex-wrap: wrap; gap: 1.2rem; }
+      .stat-num { font-size: 1.5rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -402,34 +437,61 @@
 
 <!-- HERO -->
 <section id="hero">
+  <!-- Background decorative pattern -->
+  <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:0.04;">
+      <defs>
+        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#E8623A" stroke-width="0.5"/>
+        </pattern>
+        <pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse">
+          <circle cx="15" cy="15" r="1" fill="#E8623A"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+      <rect width="100%" height="100%" fill="url(#dots)"/>
+    </svg>
+    <div style="position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(232,98,58,0.08) 0%,transparent 70%);top:-100px;right:-100px;"></div>
+    <div style="position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(232,98,58,0.05) 0%,transparent 70%);bottom:0;left:100px;"></div>
+  </div>
   <div class="grid-bg">
     <canvas class="grid-canvas" id="gridCanvas"></canvas>
   </div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">✦ Data Analyst · SEO Writer · Instructor · Content Creator</p>
-    <h1 class="hero-name">Benita<br>Omosefe <span>Nikoro.</span></h1>
-    <p class="hero-tagline">
-      I turn raw data into stories that actually mean something — through analysis, visualization, and training others to do the same. Welcome to my work.
-    </p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">View My Projects</a>
-      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+
+  <div style="position:relative;z-index:2;width:100%;max-width:1100px;margin:0 auto;">
+    <!-- Top row: photo + text -->
+    <div class="hero-top-row">
+      <!-- Photo -->
+      <img src="benita_photo.jpg" alt="Benita Omosefe Nikoro" class="hero-photo">
+      <!-- Text -->
+      <div class="hero-content">
+        <p class="hero-eyebrow">✦ Data Analyst · Data Analysis Instructor · SEO Writer · Data Entry</p>
+        <h1 class="hero-name">Benita<br>Omosefe <span>Nikoro.</span></h1>
+        <p class="hero-tagline">
+          I turn raw data into stories that actually mean something through analysis, visualization, and training others to do the same. Welcome to my work.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View My Projects</a>
+          <a href="mailto:nikoroomosefe@gmail.com" class="btn btn-outline">Get In Touch</a>
+        </div>
+      </div>
     </div>
+    <!-- Stats row -->
     <div class="hero-stats">
       <div class="stat-item">
         <div class="stat-num">3–4</div>
         <div class="stat-label">Years of Experience</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">7+</div>
+        <div class="stat-num">10+</div>
         <div class="stat-label">Projects Completed</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">4+</div>
+        <div class="stat-num">12+</div>
         <div class="stat-label">Certifications</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">5</div>
+        <div class="stat-num">7</div>
         <div class="stat-label">Tools in Stack</div>
       </div>
     </div>
@@ -443,9 +505,9 @@
     <h2 class="section-title">The person behind the data.</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>I'm <strong>Benita</strong>, a Statistics student at LAUTECH and a data analytics professional with <strong>3–4 years of hands-on experience</strong>. I've sharpened my skills across Excel, Power BI, Python, and SQL — turning raw data into insights that actually mean something.</p>
+        <p>I'm <strong>Benita</strong>, a Statistics student at LAUTECH and a data analytics professional in the making <strong>3–4 years of hands-on experience</strong>. I've sharpened my skills across Excel, Power BI, Python, and SQL turning raw data into insights that actually mean something.</p>
         <p>I'm passionate about making data accessible, whether through analysis, visualization, or teaching others to do the same. Beyond the numbers, I instruct data analysis, create content, write SEO articles, and lead in my community.</p>
-        <p>I'm currently open to <strong>full-time roles, internships, and freelance projects</strong> — if you have data that needs a story, let's talk.</p>
+        <p>I'm currently open to <strong>full-time roles, internships, and freelance projects</strong>. if you have data that needs a story, let's talk.</p>
       </div>
       <div class="about-roles">
         <div class="role-card">
@@ -635,11 +697,33 @@
     <h2 class="section-title">Data that tells a story.</h2>
     <div class="projects-grid">
 
+      <!-- 1. Melanin HR -->
       <div class="project-card">
-        <!-- REPLACE this placeholder div with: <img src="melanin-hr-dashboard.png" alt="Melanin HR Dashboard" style="width:100%;height:200px;object-fit:cover;"> -->
-        <div class="project-img-placeholder">
-          <div class="placeholder-icon">📊</div>
-          <div class="placeholder-text">Add dashboard screenshot</div>
+        <div style="background:#0D1B2A;padding:1.2rem 1rem 0.8rem;border-bottom:1px solid var(--border);">
+          <div style="font-size:0.65rem;color:var(--coral);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">HR Analytics</div>
+          <svg viewBox="0 0 280 130" width="100%" style="display:block;">
+            <!-- Headcount bar chart by dept -->
+            <text x="0" y="12" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Headcount by Department</text>
+            <!-- Bars -->
+            <rect x="0" y="22" width="168" height="14" rx="2" fill="#E8623A" opacity="0.85"/>
+            <text x="172" y="33" fill="#F5F0EB" font-size="8" font-family="Inter,sans-serif">Engineering 42%</text>
+            <rect x="0" y="42" width="128" height="14" rx="2" fill="#E8623A" opacity="0.6"/>
+            <text x="132" y="53" fill="#F5F0EB" font-size="8" font-family="Inter,sans-serif">Marketing 32%</text>
+            <rect x="0" y="62" width="84" height="14" rx="2" fill="#E8623A" opacity="0.4"/>
+            <text x="88" y="73" fill="#F5F0EB" font-size="8" font-family="Inter,sans-serif">Operations 21%</text>
+            <!-- Divider -->
+            <line x1="0" y1="88" x2="280" y2="88" stroke="#1E3A52" stroke-width="1"/>
+            <!-- Donut label -->
+            <text x="0" y="100" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Gender Distribution</text>
+            <!-- Donut -->
+            <circle cx="30" cy="118" r="14" fill="none" stroke="#E8623A" stroke-width="8" stroke-dasharray="53 35" stroke-dashoffset="0" transform="rotate(-90 30 118)"/>
+            <circle cx="30" cy="118" r="14" fill="none" stroke="#1E3A52" stroke-width="8" stroke-dasharray="35 53" stroke-dashoffset="-53" transform="rotate(-90 30 118)"/>
+            <text x="30" y="122" fill="#F5F0EB" font-size="7" font-family="Inter,sans-serif" text-anchor="middle">61%</text>
+            <rect x="52" y="112" width="6" height="6" rx="1" fill="#E8623A"/>
+            <text x="62" y="119" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">Female</text>
+            <rect x="52" y="122" width="6" height="6" rx="1" fill="#1E3A52"/>
+            <text x="62" y="129" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">Male</text>
+          </svg>
         </div>
         <div class="project-body">
           <div class="project-tags">
@@ -648,25 +732,77 @@
             <span class="tag">Dashboard</span>
           </div>
           <h3 class="project-title">Melanin HR Analysis</h3>
-          <p class="project-desc">A full end-to-end HR analysis built entirely in Excel. I cleaned and structured employee data, explored workforce patterns through Pivot Tables and formulas — attrition trends, headcount distribution, departmental breakdowns — then delivered an interactive dashboard that makes the insights easy to read and act on.</p>
+          <p class="project-desc">A full end-to-end HR analysis built entirely in Excel. Cleaned and structured employee data, explored workforce patterns through Pivot Tables, attrition trends, headcount distribution, departmental breakdowns, then delivered an interactive dashboard that makes the insights easy to read and act on.</p>
         </div>
       </div>
 
+      <!-- 2. Telco Churn -->
       <div class="project-card">
-        <img src="telco_dashboard.png" alt="Telco Customer Churn Dashboard" style="width:100%;height:200px;object-fit:cover;object-position:top;">
+        <div style="background:#0D1B2A;padding:1.2rem 1rem 0.8rem;border-bottom:1px solid var(--border);">
+          <div style="font-size:0.65rem;color:var(--coral);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">Customer Analytics</div>
+          <svg viewBox="0 0 280 130" width="100%" style="display:block;">
+            <!-- KPI row -->
+            <text x="0" y="12" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Total Customers</text>
+            <text x="0" y="26" fill="#F5F0EB" font-size="14" font-family="Playfair Display,serif" font-weight="700">7,043</text>
+            <text x="100" y="12" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Churned</text>
+            <text x="100" y="26" fill="#E8623A" font-size="14" font-family="Playfair Display,serif" font-weight="700">1,869</text>
+            <text x="195" y="12" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Churn Rate</text>
+            <text x="195" y="26" fill="#E8623A" font-size="14" font-family="Playfair Display,serif" font-weight="700">26.54%</text>
+            <line x1="0" y1="34" x2="280" y2="34" stroke="#1E3A52" stroke-width="1"/>
+            <!-- Churn by contract bars -->
+            <text x="0" y="48" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Churned by Contract Type</text>
+            <rect x="0" y="56" width="210" height="12" rx="2" fill="#E8623A" opacity="0.9"/>
+            <text x="214" y="66" fill="#F5F0EB" font-size="7.5" font-family="Inter,sans-serif">Monthly 1,655</text>
+            <rect x="0" y="73" width="50" height="12" rx="2" fill="#E8623A" opacity="0.5"/>
+            <text x="54" y="83" fill="#F5F0EB" font-size="7.5" font-family="Inter,sans-serif">Yearly</text>
+            <rect x="0" y="90" width="20" height="12" rx="2" fill="#E8623A" opacity="0.3"/>
+            <text x="24" y="100" fill="#F5F0EB" font-size="7.5" font-family="Inter,sans-serif">Two-year</text>
+            <!-- Donut churn split -->
+            <circle cx="248" cy="100" r="22" fill="none" stroke="#E8623A" stroke-width="9" stroke-dasharray="35 65" stroke-dashoffset="0" transform="rotate(-90 248 100)"/>
+            <circle cx="248" cy="100" r="22" fill="none" stroke="#1E3A52" stroke-width="9" stroke-dasharray="65 35" stroke-dashoffset="-35" transform="rotate(-90 248 100)"/>
+            <text x="248" y="104" fill="#F5F0EB" font-size="7" font-family="Inter,sans-serif" text-anchor="middle">73%</text>
+            <text x="248" y="114" fill="#A8B5C2" font-size="6" font-family="Inter,sans-serif" text-anchor="middle">retained</text>
+          </svg>
+        </div>
         <div class="project-body">
           <div class="project-tags">
             <span class="tag tag-coral">Power BI</span>
+            <span class="tag">DAX</span>
             <span class="tag">Customer Analytics</span>
-            <span class="tag">Dashboard</span>
           </div>
           <h3 class="project-title">Telco Customer Churn Report</h3>
-          <p class="project-desc">Designed a Power BI dashboard analysing churn across 7,043 customers — revealing a 26.54% churn rate. Segmented churned customers by gender, contract type, internet service, senior citizen status, and tech support usage, enabling targeted retention strategy recommendations.</p>
+          <p class="project-desc">Designed a Power BI dashboard analysing churn across 7,043 customers, revealing a 26.54% churn rate. Segmented churned customers by gender, contract type, internet service, and tech support usage to surface targeted retention strategies.</p>
         </div>
       </div>
 
+      <!-- 3. Superstore -->
       <div class="project-card">
-        <img src="supermarket_dashboard.png" alt="Supermarket Trend Analysis Dashboard" style="width:100%;height:200px;object-fit:cover;object-position:top;">
+        <div style="background:#0D1B2A;padding:1.2rem 1rem 0.8rem;border-bottom:1px solid var(--border);">
+          <div style="font-size:0.65rem;color:var(--coral);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">Sales Analytics</div>
+          <svg viewBox="0 0 280 130" width="100%" style="display:block;">
+            <text x="0" y="12" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Total Sales by Product Line</text>
+            <!-- Horizontal bars -->
+            <rect x="0" y="18" width="168" height="11" rx="2" fill="#E8623A" opacity="0.9"/>
+            <text x="172" y="27" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">Food &amp; Bev $56K</text>
+            <rect x="0" y="33" width="157" height="11" rx="2" fill="#E8623A" opacity="0.75"/>
+            <text x="161" y="42" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">Sports $55K</text>
+            <rect x="0" y="48" width="154" height="11" rx="2" fill="#E8623A" opacity="0.6"/>
+            <text x="158" y="57" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">Electronics $54K</text>
+            <rect x="0" y="63" width="148" height="11" rx="2" fill="#E8623A" opacity="0.45"/>
+            <text x="152" y="72" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">Fashion $54K</text>
+            <line x1="0" y1="82" x2="280" y2="82" stroke="#1E3A52" stroke-width="1"/>
+            <!-- Branch performance -->
+            <text x="0" y="95" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Branch Sales Performance</text>
+            <rect x="0" y="101" width="70" height="10" rx="2" fill="#1E3A52"/>
+            <rect x="0" y="101" width="68" height="10" rx="2" fill="#E8623A" opacity="0.5"/>
+            <text x="72" y="110" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">A $106K</text>
+            <rect x="130" y="101" width="70" height="10" rx="2" fill="#1E3A52"/>
+            <rect x="130" y="101" width="66" height="10" rx="2" fill="#E8623A" opacity="0.5"/>
+            <text x="202" y="110" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">B $106K</text>
+            <rect x="0" y="115" width="75" height="10" rx="2" fill="#E8623A" opacity="0.85"/>
+            <text x="78" y="124" fill="#F5F0EB" font-size="7" font-family="Inter,sans-serif">C $110K ★ Top</text>
+          </svg>
+        </div>
         <div class="project-body">
           <div class="project-tags">
             <span class="tag tag-coral">Excel</span>
@@ -674,31 +810,147 @@
             <span class="tag">Dashboard</span>
           </div>
           <h3 class="project-title">Superstore Trend Analysis</h3>
-          <p class="project-desc">Built a dynamic sales performance dashboard tracking $322K in total sales across branches, product lines, and cities. Implemented slicers for branch, city, payment method, and product line. Surfaced key insights including Branch C as top performer, peak sales trends, and gender-based spending patterns.</p>
+          <p class="project-desc">Built a dynamic Excel dashboard tracking $322K in total sales across branches, product lines, and cities. Branch C emerged as top performer at $110K. Slicers for branch, city, and payment method reveal peak sales trends and gender-based spending patterns.</p>
         </div>
       </div>
 
+      <!-- 4. Grace Furniture -->
       <div class="project-card">
-        <div class="project-img-placeholder">
-          <div class="placeholder-icon">🚗</div>
-          <div class="placeholder-text">Add screenshot</div>
+        <div style="background:#0D1B2A;padding:1.2rem 1rem 0.8rem;border-bottom:1px solid var(--border);">
+          <div style="font-size:0.65rem;color:var(--coral);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">Revenue Analytics</div>
+          <svg viewBox="0 0 280 130" width="100%" style="display:block;">
+            <text x="0" y="12" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Monthly Revenue Growth Rate</text>
+            <!-- Line chart -->
+            <polyline points="0,90 28,80 56,85 84,65 112,70 140,50 168,60 196,40 224,45 252,25 280,30" fill="none" stroke="#E8623A" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="252" cy="25" r="3" fill="#E8623A"/>
+            <text x="220" y="20" fill="#E8623A" font-size="7" font-family="Inter,sans-serif">Peak</text>
+            <!-- X axis -->
+            <line x1="0" y1="95" x2="280" y2="95" stroke="#1E3A52" stroke-width="1"/>
+            <text x="0" y="106" fill="#A8B5C2" font-size="6.5" font-family="Inter,sans-serif">Jan</text>
+            <text x="50" y="106" fill="#A8B5C2" font-size="6.5" font-family="Inter,sans-serif">Mar</text>
+            <text x="105" y="106" fill="#A8B5C2" font-size="6.5" font-family="Inter,sans-serif">May</text>
+            <text x="158" y="106" fill="#A8B5C2" font-size="6.5" font-family="Inter,sans-serif">Jul</text>
+            <text x="210" y="106" fill="#A8B5C2" font-size="6.5" font-family="Inter,sans-serif">Sep</text>
+            <text x="255" y="106" fill="#A8B5C2" font-size="6.5" font-family="Inter,sans-serif">Nov</text>
+            <!-- Sales by region donut -->
+            <text x="0" y="122" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">Top Region: North · Top Product: Desk</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag tag-coral">Excel</span>
+            <span class="tag">Sales Analytics</span>
+            <span class="tag">Dashboard</span>
+          </div>
+          <h3 class="project-title">Grace Furniture: Customer & Revenue Insights</h3>
+          <p class="project-desc">Developed a comprehensive sales and revenue dashboard for Grace Furniture, tracking performance by salesperson, region, and product. Analysed monthly revenue growth trends, identified top customers, and delivered YTD performance insights across furniture categories.</p>
+        </div>
+      </div>
+
+      <!-- 5. Financial Literacy -->
+      <div class="project-card">
+        <div style="background:#0D1B2A;padding:1.2rem 1rem 0.8rem;border-bottom:1px solid var(--border);">
+          <div style="font-size:0.65rem;color:var(--coral);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">Survey Analysis</div>
+          <svg viewBox="0 0 280 130" width="100%" style="display:block;">
+            <!-- KPIs -->
+            <text x="0" y="12" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Total Respondents</text>
+            <text x="0" y="27" fill="#F5F0EB" font-size="16" font-family="Playfair Display,serif" font-weight="700">164</text>
+            <text x="80" y="12" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Top Struggle</text>
+            <text x="80" y="27" fill="#E8623A" font-size="11" font-family="Inter,sans-serif" font-weight="700">Saving</text>
+            <text x="175" y="12" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Top Topic</text>
+            <text x="175" y="27" fill="#E8623A" font-size="11" font-family="Inter,sans-serif" font-weight="700">Investing</text>
+            <line x1="0" y1="34" x2="280" y2="34" stroke="#1E3A52" stroke-width="1"/>
+            <!-- Topics bar -->
+            <text x="0" y="47" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Topics People Want to Learn</text>
+            <rect x="0" y="53" width="130" height="10" rx="2" fill="#E8623A" opacity="0.9"/>
+            <text x="134" y="62" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">Investing 27%</text>
+            <rect x="0" y="67" width="98" height="10" rx="2" fill="#E8623A" opacity="0.65"/>
+            <text x="102" y="76" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">Financial Planning 24%</text>
+            <rect x="0" y="81" width="80" height="10" rx="2" fill="#E8623A" opacity="0.45"/>
+            <text x="84" y="90" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">Saving 17%</text>
+            <!-- Age -->
+            <text x="0" y="108" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Respondents by Age Group</text>
+            <rect x="0" y="115" width="89" height="10" rx="2" fill="#E8623A" opacity="0.85"/>
+            <text x="91" y="124" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">25–34: 89</text>
+            <rect x="150" y="115" width="60" height="10" rx="2" fill="#E8623A" opacity="0.55"/>
+            <text x="212" y="124" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">18–24: 60</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag tag-coral">Excel</span>
+            <span class="tag">Survey Analysis</span>
+            <span class="tag">Dashboard</span>
+          </div>
+          <h3 class="project-title">Financial Literacy Survey Insights</h3>
+          <p class="project-desc">Analysed survey responses from 164 participants to uncover financial literacy gaps across age groups. Found that Saving was the top struggle and Investing the most desired topic. Built an interactive Excel dashboard with demographic breakdowns and proportional charts.</p>
+        </div>
+      </div>
+
+      <!-- 6. SUV -->
+      <div class="project-card">
+        <div style="background:#0D1B2A;padding:1.2rem 1rem 0.8rem;border-bottom:1px solid var(--border);">
+          <div style="font-size:0.65rem;color:var(--coral);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">Exploratory Analysis</div>
+          <svg viewBox="0 0 280 130" width="100%" style="display:block;">
+            <text x="0" y="12" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Purchase Rate by Age Group</text>
+            <!-- Scatter-style dots -->
+            <circle cx="30" cy="90" r="4" fill="#E8623A" opacity="0.4"/>
+            <circle cx="55" cy="80" r="5" fill="#E8623A" opacity="0.5"/>
+            <circle cx="80" cy="60" r="6" fill="#E8623A" opacity="0.7"/>
+            <circle cx="110" cy="45" r="7" fill="#E8623A" opacity="0.85"/>
+            <circle cx="140" cy="35" r="8" fill="#E8623A" opacity="0.95"/>
+            <circle cx="170" cy="50" r="6" fill="#E8623A" opacity="0.75"/>
+            <circle cx="200" cy="65" r="5" fill="#E8623A" opacity="0.55"/>
+            <circle cx="230" cy="75" r="4" fill="#E8623A" opacity="0.45"/>
+            <!-- Trend line -->
+            <polyline points="30,90 80,60 140,35 200,65 260,80" fill="none" stroke="#E8623A" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.6"/>
+            <!-- Axes -->
+            <line x1="0" y1="100" x2="270" y2="100" stroke="#1E3A52" stroke-width="1"/>
+            <line x1="0" y1="20" x2="0" y2="100" stroke="#1E3A52" stroke-width="1"/>
+            <text x="0" y="114" fill="#A8B5C2" font-size="6.5" font-family="Inter,sans-serif">20</text>
+            <text x="55" y="114" fill="#A8B5C2" font-size="6.5" font-family="Inter,sans-serif">30</text>
+            <text x="115" y="114" fill="#A8B5C2" font-size="6.5" font-family="Inter,sans-serif">40</text>
+            <text x="175" y="114" fill="#A8B5C2" font-size="6.5" font-family="Inter,sans-serif">50</text>
+            <text x="235" y="114" fill="#A8B5C2" font-size="6.5" font-family="Inter,sans-serif">60  Age</text>
+            <text x="0" y="125" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">Peak purchase probability: ages 35–45</text>
+          </svg>
         </div>
         <div class="project-body">
           <div class="project-tags">
             <span class="tag tag-coral">Python</span>
-            <span class="tag">Jupyter Notebook</span>
             <span class="tag">EDA</span>
+            <span class="tag">Jupyter Notebook</span>
           </div>
           <h3 class="project-title">SUV Purchase Behaviour Analysis</h3>
-          <p class="project-desc">Explored a consumer dataset to uncover patterns in SUV purchasing decisions. Performed exploratory data analysis using Python and Jupyter Notebook, examining relationships between age, estimated salary, and purchase behaviour to draw actionable insights.</p>
-          <a href="https://github.com/BenitaOmosefe/SUV_Analysis" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
+          <p class="project-desc">Explored a consumer dataset to uncover patterns in SUV purchasing decisions. Used Python and Jupyter Notebook to examine relationships between age, estimated salary, and purchase behaviour, finding peak purchase probability in the 35–45 age range.</p>
+          <a href="https://github.com/BenitaOmosefe/SUV_Analysis" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">View Project →</a>
         </div>
       </div>
 
+      <!-- 7. Titanic -->
       <div class="project-card">
-        <div class="project-img-placeholder">
-          <div class="placeholder-icon">🤖</div>
-          <div class="placeholder-text">Add screenshot</div>
+        <div style="background:#0D1B2A;padding:1.2rem 1rem 0.8rem;border-bottom:1px solid var(--border);">
+          <div style="font-size:0.65rem;color:var(--coral);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">Machine Learning</div>
+          <svg viewBox="0 0 280 130" width="100%" style="display:block;">
+            <text x="0" y="12" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Survival Rate by Gender</text>
+            <rect x="0" y="18" width="210" height="13" rx="2" fill="#E8623A" opacity="0.85"/>
+            <text x="214" y="29" fill="#F5F0EB" font-size="8" font-family="Inter,sans-serif">Female 74%</text>
+            <rect x="0" y="36" width="95" height="13" rx="2" fill="#E8623A" opacity="0.45"/>
+            <text x="99" y="47" fill="#F5F0EB" font-size="8" font-family="Inter,sans-serif">Male 19%</text>
+            <line x1="0" y1="58" x2="280" y2="58" stroke="#1E3A52" stroke-width="1"/>
+            <text x="0" y="72" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Model Performance</text>
+            <!-- Confusion matrix style -->
+            <rect x="0" y="78" width="55" height="24" rx="2" fill="#E8623A" opacity="0.7"/>
+            <text x="27" y="94" fill="#fff" font-size="9" font-family="Inter,sans-serif" text-anchor="middle">TP</text>
+            <rect x="60" y="78" width="55" height="24" rx="2" fill="#1E3A52"/>
+            <text x="87" y="94" fill="#A8B5C2" font-size="9" font-family="Inter,sans-serif" text-anchor="middle">FP</text>
+            <rect x="0" y="106" width="55" height="24" rx="2" fill="#1E3A52"/>
+            <text x="27" y="122" fill="#A8B5C2" font-size="9" font-family="Inter,sans-serif" text-anchor="middle">FN</text>
+            <rect x="60" y="106" width="55" height="24" rx="2" fill="#E8623A" opacity="0.4"/>
+            <text x="87" y="122" fill="#fff" font-size="9" font-family="Inter,sans-serif" text-anchor="middle">TN</text>
+            <text x="130" y="90" fill="#A8B5C2" font-size="7.5" font-family="Inter,sans-serif">Accuracy</text>
+            <text x="130" y="104" fill="#E8623A" font-size="16" font-family="Playfair Display,serif" font-weight="700">~81%</text>
+          </svg>
         </div>
         <div class="project-body">
           <div class="project-tags">
@@ -707,83 +959,109 @@
             <span class="tag">Jupyter</span>
           </div>
           <h3 class="project-title">Titanic Survival Classification</h3>
-          <p class="project-desc">Built a classification model to predict passenger survival using logistic regression and decision trees. Applied data cleaning, feature engineering, and evaluated performance with accuracy and ROC-AUC metrics.</p>
-          <a href="https://github.com/BenitaOmosefe/Omosefe_Nikoro" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
+          <p class="project-desc">Built a classification model to predict passenger survival using logistic regression and decision trees. Applied data cleaning, feature engineering, and evaluated with accuracy and ROC-AUC. Female survival rate was 74% vs 19% for male passengers.</p>
+          <a href="https://github.com/BenitaOmosefe/Omosefe_Nikoro" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">View Project →</a>
         </div>
       </div>
 
+      <!-- 8. Movie Rating -->
       <div class="project-card">
-        <div class="project-img-placeholder">
-          <div class="placeholder-icon">🎬</div>
-          <div class="placeholder-text">Add screenshot</div>
+        <div style="background:#0D1B2A;padding:1.2rem 1rem 0.8rem;border-bottom:1px solid var(--border);">
+          <div style="font-size:0.65rem;color:var(--coral);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">Recommendation System</div>
+          <svg viewBox="0 0 280 130" width="100%" style="display:block;">
+            <text x="0" y="12" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Predicted vs Actual Ratings (RMSE)</text>
+            <!-- Rating bars -->
+            <rect x="0" y="20" width="200" height="12" rx="2" fill="#E8623A" opacity="0.85"/>
+            <text x="204" y="30" fill="#A8B5C2" font-size="7.5" font-family="Inter,sans-serif">★★★★★  5.0</text>
+            <rect x="0" y="36" width="160" height="12" rx="2" fill="#E8623A" opacity="0.7"/>
+            <text x="164" y="46" fill="#A8B5C2" font-size="7.5" font-family="Inter,sans-serif">★★★★  4.0</text>
+            <rect x="0" y="52" width="120" height="12" rx="2" fill="#E8623A" opacity="0.5"/>
+            <text x="124" y="62" fill="#A8B5C2" font-size="7.5" font-family="Inter,sans-serif">★★★  3.0</text>
+            <rect x="0" y="68" width="80" height="12" rx="2" fill="#E8623A" opacity="0.35"/>
+            <text x="84" y="78" fill="#A8B5C2" font-size="7.5" font-family="Inter,sans-serif">★★  2.0</text>
+            <line x1="0" y1="90" x2="280" y2="90" stroke="#1E3A52" stroke-width="1"/>
+            <text x="0" y="104" fill="#A8B5C2" font-size="7.5" font-family="Inter,sans-serif">Model RMSE</text>
+            <text x="0" y="120" fill="#E8623A" font-size="18" font-family="Playfair Display,serif" font-weight="700">0.87</text>
+            <text x="65" y="120" fill="#A8B5C2" font-size="7.5" font-family="Inter,sans-serif">Collaborative Filtering</text>
+          </svg>
         </div>
         <div class="project-body">
           <div class="project-tags">
             <span class="tag tag-coral">Python</span>
             <span class="tag">Recommendation Systems</span>
-          </div>
-          <h3 class="project-title">Movie Rating Prediction</h3>
-          <p class="project-desc">Built a recommendation system using collaborative filtering and regression to predict user ratings for unseen movies. Evaluated with RMSE and iterated to improve personalisation accuracy.</p>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="grace_furniture_dashboard.png" alt="Grace Furniture Customer & Revenue Insights Dashboard" style="width:100%;height:200px;object-fit:cover;object-position:top;">
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag tag-coral">Excel</span>
-            <span class="tag">Sales Analytics</span>
-            <span class="tag">Dashboard</span>
-          </div>
-          <h3 class="project-title">Grace Furniture — Customer & Revenue Insights</h3>
-          <p class="project-desc">Developed a comprehensive sales and revenue dashboard for Grace Furniture, tracking performance by salesperson, region, and product. Analysed monthly revenue growth trends, identified top customers, and delivered actionable insights on year-to-date performance across furniture categories.</p>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="financial_literacy_dashboard.png" alt="Financial Literacy Survey Insights Dashboard" style="width:100%;height:200px;object-fit:cover;object-position:top;">
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag tag-coral">Excel</span>
-            <span class="tag">Survey Analysis</span>
-            <span class="tag">Dashboard</span>
-          </div>
-          <h3 class="project-title">Financial Literacy Survey Insights</h3>
-          <p class="project-desc">Analysed survey responses from 164 participants to uncover financial literacy gaps across age groups. Found that Saving was the top struggle and Investing the most desired learning topic. Built an interactive Excel dashboard with demographic breakdowns and proportional charts for clear communication of findings.</p>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-img-placeholder">
-          <div class="placeholder-icon">📦</div>
-          <div class="placeholder-text">Add screenshot</div>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag tag-coral">Python</span>
-            <span class="tag">Machine Learning</span>
             <span class="tag">Arch Technologies</span>
           </div>
-          <h3 class="project-title">Arch Technologies — Task 4</h3>
-          <p class="project-desc">Completed an advanced machine learning task during the Arch Technologies Data Science Internship, applying Python to build and evaluate a predictive model on a structured dataset with feature engineering and model performance assessment.</p>
+          <h3 class="project-title">Movie Rating Prediction</h3>
+          <p class="project-desc">Built a recommendation system using collaborative filtering and regression to predict user ratings for unseen movies. Evaluated with RMSE and iterated to improve personalisation accuracy. Completed as part of the Arch Technologies Data Science Internship.</p>
           <a href="https://github.com/BenitaOmosefe/Arch-Technology-Task-4" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
         </div>
       </div>
 
+      <!-- 9. Stock Price -->
       <div class="project-card">
-        <div class="project-img-placeholder">
-          <div class="placeholder-icon">📦</div>
-          <div class="placeholder-text">Add screenshot</div>
+        <div style="background:#0D1B2A;padding:1.2rem 1rem 0.8rem;border-bottom:1px solid var(--border);">
+          <div style="font-size:0.65rem;color:var(--coral);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">Deep Learning · LSTM</div>
+          <svg viewBox="0 0 280 130" width="100%" style="display:block;">
+            <text x="0" y="12" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">Actual vs Predicted Stock Price</text>
+            <!-- Actual line -->
+            <polyline points="0,90 20,80 40,85 60,70 80,60 100,75 120,55 140,40 160,50 180,35 200,45 220,30 240,38 260,25 280,32" fill="none" stroke="#A8B5C2" stroke-width="1.5" opacity="0.5"/>
+            <!-- Predicted line -->
+            <polyline points="0,92 20,82 40,87 60,73 80,62 100,77 120,57 140,43 160,52 180,37 200,48 220,33 240,40 260,28 280,35" fill="none" stroke="#E8623A" stroke-width="2" stroke-dasharray="5 2"/>
+            <!-- Area fill under predicted -->
+            <polygon points="0,92 20,82 40,87 60,73 80,62 100,77 120,57 140,43 160,52 180,37 200,48 220,33 240,40 260,28 280,35 280,130 0,130" fill="#E8623A" opacity="0.05"/>
+            <line x1="0" y1="100" x2="280" y2="100" stroke="#1E3A52" stroke-width="1"/>
+            <text x="0" y="114" fill="#A8B5C2" font-size="6.5" font-family="Inter,sans-serif">Time →</text>
+            <!-- Legend -->
+            <line x1="100" y1="110" x2="125" y2="110" stroke="#A8B5C2" stroke-width="1.5" opacity="0.5"/>
+            <text x="128" y="114" fill="#A8B5C2" font-size="6.5" font-family="Inter,sans-serif">Actual</text>
+            <line x1="170" y1="110" x2="195" y2="110" stroke="#E8623A" stroke-width="2" stroke-dasharray="5 2"/>
+            <text x="198" y="114" fill="#A8B5C2" font-size="6.5" font-family="Inter,sans-serif">Predicted</text>
+          </svg>
         </div>
         <div class="project-body">
           <div class="project-tags">
             <span class="tag tag-coral">Python</span>
-            <span class="tag">Data Wrangling</span>
+            <span class="tag">Deep Learning</span>
+            <span class="tag">LSTM</span>
+          </div>
+          <h3 class="project-title">Stock Price Prediction Using LSTM</h3>
+          <p class="project-desc">Built a Long Short-Term Memory (LSTM) neural network to predict stock prices from historical time-series data. Applied data preprocessing, sequence modelling, and model evaluation to capture temporal patterns and generate forward-looking price forecasts.</p>
+          <a href="https://github.com/BenitaOmosefe/Arch-Technology-Task-2" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
+        </div>
+      </div>
+
+      <!-- 10. Customer Segmentation -->
+      <div class="project-card">
+        <div style="background:#0D1B2A;padding:1.2rem 1rem 0.8rem;border-bottom:1px solid var(--border);">
+          <div style="font-size:0.65rem;color:var(--coral);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">Clustering · Segmentation</div>
+          <svg viewBox="0 0 280 130" width="100%" style="display:block;">
+            <text x="0" y="12" fill="#A8B5C2" font-size="8" font-family="Inter,sans-serif">K-Means Customer Clusters</text>
+            <!-- Cluster 1 -->
+            <circle cx="60" cy="50" r="3" fill="#E8623A" opacity="0.9"/><circle cx="70" cy="45" r="3" fill="#E8623A" opacity="0.8"/><circle cx="55" cy="60" r="3" fill="#E8623A" opacity="0.85"/><circle cx="75" cy="55" r="3" fill="#E8623A" opacity="0.75"/><circle cx="65" cy="40" r="3" fill="#E8623A" opacity="0.9"/>
+            <circle cx="62" cy="50" r="22" fill="none" stroke="#E8623A" stroke-width="1" stroke-dasharray="3 2" opacity="0.4"/>
+            <text x="45" y="85" fill="#E8623A" font-size="7" font-family="Inter,sans-serif">High Value</text>
+            <!-- Cluster 2 -->
+            <circle cx="150" cy="70" r="3" fill="#A8B5C2" opacity="0.7"/><circle cx="165" cy="65" r="3" fill="#A8B5C2" opacity="0.8"/><circle cx="145" cy="80" r="3" fill="#A8B5C2" opacity="0.7"/><circle cx="170" cy="75" r="3" fill="#A8B5C2" opacity="0.6"/><circle cx="158" cy="60" r="3" fill="#A8B5C2" opacity="0.75"/>
+            <circle cx="157" cy="70" r="22" fill="none" stroke="#A8B5C2" stroke-width="1" stroke-dasharray="3 2" opacity="0.3"/>
+            <text x="140" y="105" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">Mid Tier</text>
+            <!-- Cluster 3 -->
+            <circle cx="235" cy="45" r="3" fill="#F5F0EB" opacity="0.5"/><circle cx="248" cy="40" r="3" fill="#F5F0EB" opacity="0.5"/><circle cx="230" cy="55" r="3" fill="#F5F0EB" opacity="0.5"/><circle cx="255" cy="52" r="3" fill="#F5F0EB" opacity="0.45"/><circle cx="242" cy="35" r="3" fill="#F5F0EB" opacity="0.5"/>
+            <circle cx="242" cy="45" r="22" fill="none" stroke="#F5F0EB" stroke-width="1" stroke-dasharray="3 2" opacity="0.2"/>
+            <text x="222" y="80" fill="#F5F0EB" font-size="7" font-family="Inter,sans-serif" opacity="0.6">Low Freq.</text>
+            <line x1="0" y1="110" x2="280" y2="110" stroke="#1E3A52" stroke-width="1"/>
+            <text x="0" y="124" fill="#A8B5C2" font-size="7" font-family="Inter,sans-serif">3 distinct segments identified → targeted marketing strategies</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag tag-coral">Python</span>
+            <span class="tag">K-Means</span>
+            <span class="tag">Clustering</span>
             <span class="tag">Arch Technologies</span>
           </div>
-          <h3 class="project-title">Arch Technologies Task 2 & 3</h3>
-          <p class="project-desc">Completed structured data science tasks during the Arch Technologies internship, covering data wrangling, feature engineering, and exploratory analysis using Python and Jupyter Notebook.</p>
-          <a href="https://github.com/BenitaOmosefe/Arch-Technology-Task-2" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
+          <h3 class="project-title">Customer Segmentation Analysis</h3>
+          <p class="project-desc">Applied K-Means clustering to segment customers based on purchasing behaviour and demographics. Identified 3 distinct customer groups — High Value, Mid Tier, and Low Frequency — to support targeted marketing and personalised business strategies.</p>
+          <a href="https://github.com/BenitaOmosefe/Arch-Technology-Task-3" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
         </div>
       </div>
 
@@ -804,7 +1082,9 @@
           <div class="cert-name">Data Analytics Bootcamp Scholarship (15 Weeks)</div>
           <div class="cert-org">TechCrush · Accredited by American Council of Training & Development, USA</div>
           <div class="cert-year">June 2026</div>
-        </div>
+        
+          <a href="https://drive.google.com/file/d/1dmnPx4aapW55kiCNdxsOLQQj8_DWhhNx/view?usp=sharing" target="_blank" style="display:inline-block;margin-top:0.5rem;font-size:0.7rem;color:var(--coral);text-decoration:none;font-weight:600;letter-spacing:0.04em;">View Certificate →</a>
+          </div>
       </div>
 
       <div class="cert-card">
@@ -813,6 +1093,7 @@
           <div class="cert-name">Data Science Internship & Training Program (8 Weeks)</div>
           <div class="cert-org">Arch Technologies · Pakistan's Digital AI Training Platform</div>
           <div class="cert-year">Feb – Mar 2026</div>
+          <a href="https://drive.google.com/file/d/1SfxlFfsSFZH68faM_soqR2S0fF96ca6P/view?usp=sharing" target="_blank" style="display:inline-block;margin-top:0.5rem;font-size:0.7rem;color:var(--coral);text-decoration:none;font-weight:600;letter-spacing:0.04em;">View Certificate →</a>
         </div>
       </div>
 
@@ -822,7 +1103,9 @@
           <div class="cert-name">ASSON 2025 National Statistics Student Conference</div>
           <div class="cert-org">Instats · With American Statistical Association</div>
           <div class="cert-year">October 2025</div>
-        </div>
+        
+          <a href="https://drive.google.com/file/d/1odqQ5d7k2YTjThTSh4_uwf-o9d8OIeoR/view?usp=sharing" target="_blank" style="display:inline-block;margin-top:0.5rem;font-size:0.7rem;color:var(--coral);text-decoration:none;font-weight:600;letter-spacing:0.04em;">View Certificate →</a>
+          </div>
       </div>
 
       <div class="cert-card">
@@ -831,7 +1114,9 @@
           <div class="cert-name">Data Analytics Tech Boot Camp</div>
           <div class="cert-org">Innovate To Impact</div>
           <div class="cert-year">April 2025</div>
-        </div>
+        
+          <a href="https://drive.google.com/file/d/1cCbZjbN4ekYdV5R5EmiM0tiYj2xSy7-m/view?usp=sharing" target="_blank" style="display:inline-block;margin-top:0.5rem;font-size:0.7rem;color:var(--coral);text-decoration:none;font-weight:600;letter-spacing:0.04em;">View Certificate →</a>
+          </div>
       </div>
 
       <div class="cert-card">
@@ -840,7 +1125,9 @@
           <div class="cert-name">Data Analysis Beginner Course</div>
           <div class="cert-org">TechyJaunt</div>
           <div class="cert-year">Mar – Aug 2024</div>
-        </div>
+        
+          <a href="https://drive.google.com/file/d/1I0ZcmPBvddLD14ccJZWLbqj0Djhzeodi/view?usp=sharing" target="_blank" style="display:inline-block;margin-top:0.5rem;font-size:0.7rem;color:var(--coral);text-decoration:none;font-weight:600;letter-spacing:0.04em;">View Certificate →</a>
+          </div>
       </div>
 
       <div class="cert-card">
@@ -849,7 +1136,9 @@
           <div class="cert-name">AI & Data Science Career Masterclass</div>
           <div class="cert-org">Simplilearn · In Partnership with Brown University</div>
           <div class="cert-year">February 2024</div>
-        </div>
+
+          <a href="https://drive.google.com/file/d/1DTi5Y4qZeGpr0aQyXYrlfkO2PiZgcW24/view?usp=sharing" target="_blank" style="display:inline-block;margin-top:0.5rem;font-size:0.7rem;color:var(--coral);text-decoration:none;font-weight:600;letter-spacing:0.04em;">View Certificate →</a>
+          </div>
       </div>
 
       <div class="cert-card">
@@ -858,7 +1147,9 @@
           <div class="cert-name">Product Design Launchpad Course</div>
           <div class="cert-org">Future Academy Africa</div>
           <div class="cert-year">April 2023</div>
-        </div>
+        
+          <a href="https://drive.google.com/file/d/18v6Xunw5CvQtKPGDqqxNpAOECQNzBzO5/view?usp=sharing" target="_blank" style="display:inline-block;margin-top:0.5rem;font-size:0.7rem;color:var(--coral);text-decoration:none;font-weight:600;letter-spacing:0.04em;">View Certificate →</a>
+          </div>
       </div>
 
       <div class="cert-card">
@@ -867,7 +1158,9 @@
           <div class="cert-name">Introduction to Critical Infrastructure Protection (ICIP)</div>
           <div class="cert-org">OPSWAT Academy</div>
           <div class="cert-year">January 2023</div>
-        </div>
+        
+          <a href="https://drive.google.com/file/d/1rVYm-sSplOqbkvkXBf166oiB7QAEx7Cn/view?usp=sharing" target="_blank" style="display:inline-block;margin-top:0.5rem;font-size:0.7rem;color:var(--coral);text-decoration:none;font-weight:600;letter-spacing:0.04em;">View Certificate →</a>
+          </div>
       </div>
 
       <div class="cert-card">
@@ -876,7 +1169,9 @@
           <div class="cert-name">LAUTECH LMS Course</div>
           <div class="cert-org">LAUTECH · PEBL West Africa · Association of Commonwealth Universities, UK</div>
           <div class="cert-year">LAUTECH, Ogbomoso</div>
-        </div>
+        
+          <a href="https://drive.google.com/file/d/1LqezhEuPw84LATRcdsEGqh1tCN2FyUMv/view?usp=sharing" target="_blank" style="display:inline-block;margin-top:0.5rem;font-size:0.7rem;color:var(--coral);text-decoration:none;font-weight:600;letter-spacing:0.04em;">View Certificate →</a>
+          </div>
       </div>
 
       <div class="cert-card">
@@ -885,7 +1180,9 @@
           <div class="cert-name">International Volunteering</div>
           <div class="cert-org">La Plage Meta Verse (LPMV) · Accredited CPD Provider · ISO 9001 Certified</div>
           <div class="cert-year">October 2024 · Cert No. 812681</div>
-        </div>
+        
+          <a href="https://drive.google.com/file/d/1OIGu8rJx8vNdgHvuns_G4KK5yeuxsA63/view?usp=sharing" target="_blank" style="display:inline-block;margin-top:0.5rem;font-size:0.7rem;color:var(--coral);text-decoration:none;font-weight:600;letter-spacing:0.04em;">View Certificate →</a>
+          </div>
       </div>
 
       <div class="cert-card">
@@ -894,7 +1191,9 @@
           <div class="cert-name">International Office Management</div>
           <div class="cert-org">La Plage Meta Verse (LPMV) · Accredited CPD Provider · ISO 9001 Certified</div>
           <div class="cert-year">October 2024 · Cert No. 812681</div>
-        </div>
+        
+          <a href="https://drive.google.com/file/d/1Yd48FBQ4FGQov2fecyoOCY51PNdWlzbB/view?usp=sharing" target="_blank" style="display:inline-block;margin-top:0.5rem;font-size:0.7rem;color:var(--coral);text-decoration:none;font-weight:600;letter-spacing:0.04em;">View Certificate →</a>
+          </div>
       </div>
 
       <div class="cert-card">
@@ -903,7 +1202,9 @@
           <div class="cert-name">International Work Ethics</div>
           <div class="cert-org">La Plage Meta Verse (LPMV) · Accredited CPD Provider · ISO 9001 Certified</div>
           <div class="cert-year">October 2024 · Cert No. 812681</div>
-        </div>
+        
+          <a href="https://drive.google.com/file/d/1bgjl-k9ecokBcyIImgj2Nm-5u9-LaCJn/view?usp=sharing" target="_blank" style="display:inline-block;margin-top:0.5rem;font-size:0.7rem;color:var(--coral);text-decoration:none;font-weight:600;letter-spacing:0.04em;">View Certificate →</a>
+          </div>
       </div>
 
     </div>
@@ -915,8 +1216,7 @@
         <div style="font-weight:600; font-size:0.95rem; margin-bottom:0.3rem; color:var(--warm-white);">Letter of Recommendation — Arch Technologies</div>
         <div style="font-size:0.82rem; color:var(--muted); line-height:1.6;">Issued March 25, 2026 by M.A Rehman, Head of AI at Arch Technologies — recognising professionalism, teamwork, and strong contributions during the 8-week Data Science Internship & Training Program.</div>
       </div>
-      <!-- PLACEHOLDER: Once you host the PDF online, add a link button here:
-      <a href="your-recommendation-letter.pdf" target="_blank" class="btn btn-outline" style="font-size:0.8rem;padding:0.6rem 1.2rem;">View Letter</a> -->
+      <a href="https://drive.google.com/file/d/1TPCvQ-Et8LLln55UGcCR6wxXfZcX5LFJ/view?usp=sharing" target="_blank" class="btn btn-outline" style="font-size:0.8rem;padding:0.6rem 1.2rem;margin-top:0.5rem;">View Letter →</a>
     </div>
 
   </div>
@@ -944,8 +1244,8 @@
 
         <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.3rem;">
           <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--coral);font-weight:600;margin-bottom:0.5rem;">Phone</div>
-          <a href="tel:+2349022978860" style="display:block;color:var(--warm-white);text-decoration:none;font-size:0.85rem;font-weight:500;">090 2297 8860</a>
-          <a href="tel:+2349027162142" style="display:block;color:var(--warm-white);text-decoration:none;font-size:0.85rem;font-weight:500;margin-top:0.3rem;">090 2716 2142</a>
+          <a href="tel:+2349022978860" style="display:block;color:var(--warm-white);text-decoration:none;font-size:0.85rem;font-weight:500;">📞 090 2297 8860</a>
+          <a href="tel:+2349027162142" style="display:block;color:var(--warm-white);text-decoration:none;font-size:0.85rem;font-weight:500;margin-top:0.3rem;">📞 090 2716 2142</a>
         </div>
 
         <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.3rem;">
