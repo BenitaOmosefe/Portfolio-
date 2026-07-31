@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Benita Omosefe Nikoro — Data Analyst</title>
+  <title>Benita Omosefe Nikoro:  Data Analyst</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -416,6 +416,379 @@
       .stat-num { font-size: 1.5rem; }
     }
 
+
+
+    /* ── MARQUEE ── */
+    .marquee-wrapper {
+      overflow: hidden;
+      width: 100%;
+      margin-bottom: 1.2rem;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 1rem;
+      width: max-content;
+      animation: marqueeScroll 18s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--coral);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .marquee-dot {
+      color: var(--muted);
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── BOUNCE ── */
+    @keyframes bounceIn {
+      0%   { transform: scale(0.85) translateY(20px); opacity: 0; }
+      60%  { transform: scale(1.04) translateY(-6px); opacity: 1; }
+      80%  { transform: scale(0.98) translateY(2px); }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    @keyframes bouncePulse {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-5px); }
+    }
+
+    /* Hero name + tagline bounce in on load */
+    .hero-name {
+      animation: bounceIn 0.9s cubic-bezier(0.36,0.07,0.19,0.97) both;
+      animation-delay: 0.2s;
+    }
+    .hero-tagline {
+      animation: bounceIn 0.9s cubic-bezier(0.36,0.07,0.19,0.97) both;
+      animation-delay: 0.4s;
+    }
+    .hero-stats {
+      animation: bounceIn 0.9s cubic-bezier(0.36,0.07,0.19,0.97) both;
+      animation-delay: 0.6s;
+    }
+
+    /* Buttons - bounce in and stay bouncy on hover */
+    .btn {
+      animation: bounceIn 0.8s cubic-bezier(0.36,0.07,0.19,0.97) both;
+      transition: transform 0.2s cubic-bezier(0.36,0.07,0.19,0.97), box-shadow 0.2s ease, background 0.2s ease !important;
+    }
+    .btn-primary { animation-delay: 0.55s; }
+    .btn-outline { animation-delay: 0.65s; }
+    .btn:hover {
+      transform: translateY(-5px) scale(1.04) !important;
+      box-shadow: 0 12px 28px rgba(232,98,58,0.35) !important;
+    }
+    .btn:active {
+      transform: scale(0.96) translateY(0) !important;
+    }
+
+    /* Photo float already there - add bounce on load too */
+    .hero-photo {
+      animation: bounceIn 1s cubic-bezier(0.36,0.07,0.19,0.97) both, floatUp 4s ease-in-out 1s infinite, pulse 4s ease-in-out 1s infinite !important;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 6px rgba(232,98,58,0.15); }
+      50% { box-shadow: 0 0 0 12px rgba(232,98,58,0.08); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes countUp {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Hero animations */
+    .hero-eyebrow { animation: fadeInUp 0.6s ease both; animation-delay: 0.1s; }
+    .hero-name { animation: fadeInUp 0.7s ease both; animation-delay: 0.25s; }
+    .hero-tagline { animation: fadeInUp 0.7s ease both; animation-delay: 0.4s; }
+    .hero-cta { animation: fadeInUp 0.7s ease both; animation-delay: 0.55s; }
+    .hero-stats { animation: fadeInUp 0.7s ease both; animation-delay: 0.7s; }
+
+    /* Photo float */
+    .hero-photo { animation: floatUp 4s ease-in-out infinite, pulse 4s ease-in-out infinite; }
+
+    /* Stat numbers shimmer on load */
+    .stat-num {
+      background: linear-gradient(90deg, var(--coral), #ff9a7b, var(--coral));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+
+    /* Scroll reveal - hidden by default */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Staggered card reveals */
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* Nav link underline animation */
+    .nav-links a {
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--coral);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Skill bar animation */
+    .skill-bar-fill {
+      width: 0 !important;
+      transition: width 1.2s ease !important;
+    }
+    .skill-bar-fill.animated { width: var(--target-width) !important; }
+
+    /* Button hover lift */
+    .btn { transition: all 0.25s ease !important; }
+    .btn:hover { transform: translateY(-3px) !important; box-shadow: 0 8px 25px rgba(232,98,58,0.3); }
+
+    /* Project card hover */
+    .project-card {
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease !important;
+    }
+    .project-card:hover {
+      transform: translateY(-6px) !important;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3) !important;
+    }
+
+    /* Cert card hover */
+    .cert-card { transition: border-color 0.2s ease, transform 0.2s ease !important; }
+    .cert-card:hover { transform: translateY(-3px) !important; }
+
+    /* Role card hover */
+    .role-card { transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease !important; }
+    .role-card:hover { transform: translateX(5px) !important; border-color: var(--coral) !important; }
+
+
+    /* ══════════════════════════════
+       COMPREHENSIVE ANIMATIONS
+    ══════════════════════════════ */
+
+    /* Keyframes */
+    @keyframes bounceName {
+      0%   { transform: translate(0, 0) scale(1); }
+      15%  { transform: translate(-8px, -12px) scale(1.02); }
+      30%  { transform: translate(8px, -6px) scale(1.01); }
+      45%  { transform: translate(-5px, 8px) scale(0.99); }
+      60%  { transform: translate(5px, -4px) scale(1.01); }
+      75%  { transform: translate(-3px, 4px) scale(1.00); }
+      90%  { transform: translate(3px, -2px) scale(1.00); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes slideFromTop {
+      from { opacity: 0; transform: translateY(-50px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideFromBottom {
+      from { opacity: 0; transform: translateY(60px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideFromLeft {
+      from { opacity: 0; transform: translateX(-70px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideFromRight {
+      from { opacity: 0; transform: translateX(70px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes bounceSettle {
+      0%   { transform: translateY(0); }
+      20%  { transform: translateY(-10px); }
+      40%  { transform: translateY(0); }
+      60%  { transform: translateY(-5px); }
+      80%  { transform: translateY(0); }
+      100% { transform: translateY(0); }
+    }
+    @keyframes marqueeLeft {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes openToScroll {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Hero name — bounces in all directions */
+    .hero-name {
+      display: inline-block;
+      animation: slideFromLeft 0.7s cubic-bezier(0.22,1,0.36,1) 0.1s both,
+                 bounceName 6s ease-in-out 1s infinite;
+    }
+
+    /* Hero tagline — slides from top */
+    .hero-tagline {
+      animation: slideFromTop 0.7s cubic-bezier(0.22,1,0.36,1) 0.3s both,
+                 bounceSettle 0.8s ease 1s both;
+    }
+
+    /* Buttons — slide from bottom with bounce */
+    .hero-cta .btn {
+      animation: slideFromBottom 0.7s cubic-bezier(0.22,1,0.36,1) both,
+                 bounceSettle 0.6s ease both;
+    }
+    .hero-cta .btn-primary { animation-delay: 0.5s, 1.2s; }
+    .hero-cta .btn-outline  { animation-delay: 0.65s, 1.35s; }
+    .btn:hover {
+      transform: translateY(-6px) scale(1.05) !important;
+      box-shadow: 0 14px 30px rgba(232,98,58,0.4) !important;
+      transition: transform 0.2s cubic-bezier(0.22,1,0.36,1), box-shadow 0.2s ease !important;
+    }
+    .btn:active { transform: scale(0.95) !important; }
+
+    /* Stats — scroll reveal right to left */
+    .anim-stats {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .anim-stats.visible { opacity: 1; transform: translateX(0); }
+    .anim-stats.visible .stat-num { animation: bounceSettle 0.6s ease 0.3s both; }
+
+    /* About title — from left */
+    .anim-from-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .anim-from-left.visible { opacity: 1; transform: translateX(0); }
+
+    /* About text — from left */
+    .anim-text-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.7s ease 0.15s, transform 0.7s cubic-bezier(0.22,1,0.36,1) 0.15s;
+    }
+    .anim-text-left.visible { opacity: 1; transform: translateX(0); }
+
+    /* Roles — from right */
+    .anim-from-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .anim-from-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* Cards — alternating left/right/bottom */
+    .anim-card-left {
+      opacity: 0;
+      transform: translateX(-50px) translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+    }
+    .anim-card-left.visible {
+      opacity: 1; transform: translateX(0) translateY(0);
+    }
+    .anim-card-right {
+      opacity: 0;
+      transform: translateX(50px) translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+    }
+    .anim-card-right.visible {
+      opacity: 1; transform: translateX(0) translateY(0);
+    }
+    .anim-card-up {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+    }
+    .anim-card-up.visible {
+      opacity: 1; transform: translateY(0);
+    }
+    .anim-card-left.visible, .anim-card-right.visible, .anim-card-up.visible {
+      animation: bounceSettle 0.5s ease 0.5s both;
+    }
+
+    /* Open To badge — constant left to right scroll */
+    .open-to-wrapper {
+      overflow: hidden;
+      width: 100%;
+      margin-top: 1.5rem;
+    }
+    .open-to-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeLeft 12s linear infinite;
+    }
+    .open-to-track:hover { animation-play-state: paused; }
+    .open-to-badge {
+      display: inline-block;
+      background: rgba(232,98,58,0.1);
+      border: 1px solid rgba(232,98,58,0.3);
+      color: var(--coral);
+      padding: 0.6rem 2rem;
+      border-radius: 99px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      margin-right: 2rem;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; }
     }
@@ -437,9 +810,15 @@
 
 <!-- HERO -->
 <section id="hero">
-  <!-- Background decorative pattern -->
+  <!-- Background image + pattern overlay -->
   <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:0.04;">
+    <!-- Dark data analytics background image -->
+    <img src="https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?w=1600&auto=format&fit=crop&q=60&blend=000000&blend-mode=multiply"
+         style="width:100%;height:100%;object-fit:cover;opacity:0.12;position:absolute;inset:0;"
+         onerror="this.style.display='none'"
+         alt="">
+    <!-- Fallback SVG pattern always visible -->
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:0.04;position:absolute;inset:0;">
       <defs>
         <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
           <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#E8623A" stroke-width="0.5"/>
@@ -465,10 +844,29 @@
       <img src="benita_photo.jpg" alt="Benita Omosefe Nikoro" class="hero-photo">
       <!-- Text -->
       <div class="hero-content">
-        <p class="hero-eyebrow">✦ Data Analyst · Data Analysis Instructor · SEO Writer · Data Entry</p>
+        <div class="marquee-wrapper">
+        <div class="marquee-track">
+          <span class="marquee-item">✦ Data Analyst</span>
+          <span class="marquee-dot">·</span>
+          <span class="marquee-item">Data Analysis Instructor</span>
+          <span class="marquee-dot">·</span>
+          <span class="marquee-item">SEO Writer</span>
+          <span class="marquee-dot">·</span>
+          <span class="marquee-item">Data Entry</span>
+          <span class="marquee-dot">·</span>
+          <span class="marquee-item">✦ Data Analyst</span>
+          <span class="marquee-dot">·</span>
+          <span class="marquee-item">Data Analysis Instructor</span>
+          <span class="marquee-dot">·</span>
+          <span class="marquee-item">SEO Writer</span>
+          <span class="marquee-dot">·</span>
+          <span class="marquee-item">Data Entry</span>
+          <span class="marquee-dot">·</span>
+       </div>
+      </div>
         <h1 class="hero-name">Benita<br>Omosefe <span>Nikoro.</span></h1>
         <p class="hero-tagline">
-          I turn raw data into stories that actually mean something through analysis, visualization, and training others to do the same. Welcome to my work.
+          I investigate raw data to unravel its hidden story, the actionable insights that could help businesses stay on top of their game.
         </p>
         <div class="hero-cta">
           <a href="#projects" class="btn btn-primary">View My Projects</a>
@@ -505,9 +903,9 @@
     <h2 class="section-title">The person behind the data.</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>I'm <strong>Benita</strong>, a Statistics student at LAUTECH and a data analytics professional in the making <strong>3–4 years of hands-on experience</strong>. I've sharpened my skills across Excel, Power BI, Python, and SQL turning raw data into insights that actually mean something.</p>
-        <p>I'm passionate about making data accessible, whether through analysis, visualization, or teaching others to do the same. Beyond the numbers, I instruct data analysis, create content, write SEO articles, and lead in my community.</p>
-        <p>I'm currently open to <strong>full-time roles, internships, and freelance projects</strong>. if you have data that needs a story, let's talk.</p>
+        <p><strong>Benita</strong> is a Statistics student at Ladoke Akintola University of Technology (LAUTECH) and a data analytics professional with <strong>3–4 years of hands-on experience</strong>. Her technology stack includes Excel, Power BI, Python, SQL, SPSS, and R.</p>
+        <p>She is passionate about making data accessible and meaningful, unravelling its hidden story through compelling visualizations and analysis that drive real decisions. She is also passionate about teaching data analysis, writing SEO articles, and being a leader in her community.</p>
+        <p>She is currently open to <strong>part-time roles, internships, and freelance projects</strong>. if you want to make sense of your data, let's talk.</p>
       </div>
       <div class="about-roles">
         <div class="role-card">
@@ -535,7 +933,7 @@
           <div class="role-dot"></div>
           <div>
             <div class="role-title">Deputy Senate President</div>
-            <div class="role-org">Association of Statistics Students of Nigeria (ASSON)</div>
+            <div class="role-org">Association of Statistics Students of Nigeria (ASSON) · LAUTECH Chapter</div>
           </div>
         </div>
         <div class="role-card">
@@ -733,6 +1131,7 @@
           </div>
           <h3 class="project-title">Melanin HR Analysis</h3>
           <p class="project-desc">A full end-to-end HR analysis built entirely in Excel. Cleaned and structured employee data, explored workforce patterns through Pivot Tables, attrition trends, headcount distribution, departmental breakdowns, then delivered an interactive dashboard that makes the insights easy to read and act on.</p>
+          <a href="https://github.com/BenitaOmosefe" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
         </div>
       </div>
 
@@ -772,6 +1171,7 @@
           </div>
           <h3 class="project-title">Telco Customer Churn Report</h3>
           <p class="project-desc">Designed a Power BI dashboard analysing churn across 7,043 customers, revealing a 26.54% churn rate. Segmented churned customers by gender, contract type, internet service, and tech support usage to surface targeted retention strategies.</p>
+          <a href="https://github.com/BenitaOmosefe/TELCO-CUSTOMER-CHURN-" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
         </div>
       </div>
 
@@ -811,6 +1211,7 @@
           </div>
           <h3 class="project-title">Superstore Trend Analysis</h3>
           <p class="project-desc">Built a dynamic Excel dashboard tracking $322K in total sales across branches, product lines, and cities. Branch C emerged as top performer at $110K. Slicers for branch, city, and payment method reveal peak sales trends and gender-based spending patterns.</p>
+          <a href="https://github.com/BenitaOmosefe/Supermarket-Sales" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
         </div>
       </div>
 
@@ -844,6 +1245,7 @@
           </div>
           <h3 class="project-title">Grace Furniture: Customer & Revenue Insights</h3>
           <p class="project-desc">Developed a comprehensive sales and revenue dashboard for Grace Furniture, tracking performance by salesperson, region, and product. Analysed monthly revenue growth trends, identified top customers, and delivered YTD performance insights across furniture categories.</p>
+          <a href="https://github.com/BenitaOmosefe/Grace-Furniture" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
         </div>
       </div>
 
@@ -884,6 +1286,7 @@
           </div>
           <h3 class="project-title">Financial Literacy Survey Insights</h3>
           <p class="project-desc">Analysed survey responses from 164 participants to uncover financial literacy gaps across age groups. Found that Saving was the top struggle and Investing the most desired topic. Built an interactive Excel dashboard with demographic breakdowns and proportional charts.</p>
+          <a href="https://github.com/BenitaOmosefe/Financial-Literacy-Surgery-Insight-" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
         </div>
       </div>
 
@@ -923,7 +1326,7 @@
           </div>
           <h3 class="project-title">SUV Purchase Behaviour Analysis</h3>
           <p class="project-desc">Explored a consumer dataset to uncover patterns in SUV purchasing decisions. Used Python and Jupyter Notebook to examine relationships between age, estimated salary, and purchase behaviour, finding peak purchase probability in the 35–45 age range.</p>
-          <a href="https://github.com/BenitaOmosefe/SUV_Analysis" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">View Project →</a>
+          <a href="https://github.com/BenitaOmosefe/SUV_Analysis" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
         </div>
       </div>
 
@@ -960,7 +1363,7 @@
           </div>
           <h3 class="project-title">Titanic Survival Classification</h3>
           <p class="project-desc">Built a classification model to predict passenger survival using logistic regression and decision trees. Applied data cleaning, feature engineering, and evaluated with accuracy and ROC-AUC. Female survival rate was 74% vs 19% for male passengers.</p>
-          <a href="https://github.com/BenitaOmosefe/Omosefe_Nikoro" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">View Project →</a>
+          <a href="https://github.com/BenitaOmosefe/Omosefe_Nikoro" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
         </div>
       </div>
 
@@ -993,7 +1396,7 @@
           </div>
           <h3 class="project-title">Movie Rating Prediction</h3>
           <p class="project-desc">Built a recommendation system using collaborative filtering and regression to predict user ratings for unseen movies. Evaluated with RMSE and iterated to improve personalisation accuracy. Completed as part of the Arch Technologies Data Science Internship.</p>
-          <a href="https://github.com/BenitaOmosefe/Arch-Technology-Task-4" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">View Project →</a>
+          <a href="https://github.com/BenitaOmosefe/Arch-Technology-Task-4" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
         </div>
       </div>
 
@@ -1026,7 +1429,7 @@
           </div>
           <h3 class="project-title">Stock Price Prediction Using LSTM</h3>
           <p class="project-desc">Built a Long Short-Term Memory (LSTM) neural network to predict stock prices from historical time-series data. Applied data preprocessing, sequence modelling, and model evaluation to capture temporal patterns and generate forward-looking price forecasts.</p>
-          <a href="https://github.com/BenitaOmosefe/Arch-Technology-Task-2" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">View Project →</a>
+          <a href="https://github.com/BenitaOmosefe/Arch-Technology-Task-2" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
         </div>
       </div>
 
@@ -1060,8 +1463,8 @@
             <span class="tag">Arch Technologies</span>
           </div>
           <h3 class="project-title">Customer Segmentation Analysis</h3>
-          <p class="project-desc">Applied K-Means clustering to segment customers based on purchasing behaviour and demographics. Identified 3 distinct customer groups — High Value, Mid Tier, and Low Frequency — to support targeted marketing and personalised business strategies.</p>
-          <a href="https://github.com/BenitaOmosefe/Arch-Technology-Task-3" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">View Project →</a>
+          <p class="project-desc">Applied K-Means clustering to segment customers based on purchasing behaviour and demographics. Identified 3 distinct customer groups, High Value, Mid Tier, and Low Frequency, to support targeted marketing and personalised business strategies.</p>
+          <a href="https://github.com/BenitaOmosefe/Arch-Technology-Task-3" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.78rem;color:var(--coral);text-decoration:none;font-weight:600;">💻 View on GitHub →</a>
         </div>
       </div>
 
@@ -1136,9 +1539,7 @@
           <div class="cert-name">AI & Data Science Career Masterclass</div>
           <div class="cert-org">Simplilearn · In Partnership with Brown University</div>
           <div class="cert-year">February 2024</div>
-
-          <a href="https://drive.google.com/file/d/1DTi5Y4qZeGpr0aQyXYrlfkO2PiZgcW24/view?usp=sharing" target="_blank" style="display:inline-block;margin-top:0.5rem;font-size:0.7rem;color:var(--coral);text-decoration:none;font-weight:600;letter-spacing:0.04em;">View Certificate →</a>
-          </div>
+        </div>
       </div>
 
       <div class="cert-card">
@@ -1213,7 +1614,7 @@
     <div style="margin-top:2.5rem; padding:1.5rem 2rem; background:var(--card-bg); border:1px solid rgba(232,98,58,0.3); border-radius:10px; display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
       <div style="font-size:2rem;">📄</div>
       <div style="flex:1;">
-        <div style="font-weight:600; font-size:0.95rem; margin-bottom:0.3rem; color:var(--warm-white);">Letter of Recommendation: Arch Technologies</div>
+        <div style="font-weight:600; font-size:0.95rem; margin-bottom:0.3rem; color:var(--warm-white);">Letter of Recommendation, Arch Technologies</div>
         <div style="font-size:0.82rem; color:var(--muted); line-height:1.6;">Issued March 25, 2026 by M.A Rehman, Head of AI at Arch Technologies, recognising professionalism, teamwork, and strong contributions during the 8-week Data Science Internship & Training Program.</div>
       </div>
       <a href="https://drive.google.com/file/d/1TPCvQ-Et8LLln55UGcCR6wxXfZcX5LFJ/view?usp=sharing" target="_blank" class="btn btn-outline" style="font-size:0.8rem;padding:0.6rem 1.2rem;margin-top:0.5rem;">View Letter →</a>
@@ -1232,7 +1633,7 @@
         Whether you have data that needs a story, a role that needs a detail-oriented analyst, or a project that needs a collaborator, I'm interested. Let's talk.
       </p>
 
-      <div class="open-to" style="margin-bottom:2.5rem;">✦ Open to Full-time · Internships · Freelance</div>
+      <div class="open-to" style="margin-bottom:2.5rem;">✦ Open to Part-time · Internships · Freelance</div>
 
       <!-- Contact cards grid -->
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:2rem;text-align:left;">
@@ -1255,7 +1656,7 @@
 
         <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.3rem;">
           <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--coral);font-weight:600;margin-bottom:0.5rem;">GitHub</div>
-          <a href="https://github.com/BenitaOmosefe" target="_blank" style="color:var(--warm-white);text-decoration:none;font-size:0.85rem;font-weight:500;">github.com/BenitaOmosefe</a>
+          <a href="https://github.com/BenitaOmosefe/Financial-Literacy-Surgery-Insight-" target="_blank" style="color:var(--warm-white);text-decoration:none;font-size:0.85rem;font-weight:500;">github.com/BenitaOmosefe</a>
         </div>
 
       </div>
@@ -1324,6 +1725,136 @@
     requestAnimationFrame(draw);
   }
   draw();
+
+  // Safe scroll reveal - never hides content, only adds entrance animation
+  function initReveal() {
+    const cards = document.querySelectorAll('.project-card, .skill-card, .cert-card, .role-card');
+    
+    if (!('IntersectionObserver' in window)) {
+      // No support - just show everything
+      return;
+    }
+
+    cards.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.55s ease ' + (i % 4 * 0.08) + 's, transform 0.55s ease ' + (i % 4 * 0.08) + 's';
+    });
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    cards.forEach(el => obs.observe(el));
+  }
+
+  // Run after page fully loaded to avoid hiding content on slow devices
+  if (document.readyState === 'complete') {
+    initReveal();
+  } else {
+    window.addEventListener('load', initReveal);
+  }
+
+  // Skill bar fill animation
+  const skillObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          const w = bar.style.width;
+          bar.style.width = '0';
+          bar.style.transition = 'width 1.2s ease 0.2s';
+          setTimeout(() => { bar.style.width = w; }, 100);
+        });
+        skillObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('#skills').forEach(el => skillObs.observe(el));
+
+
+  // ── SCROLL ANIMATION ENGINE ──
+  function setupScrollAnimations() {
+    // Stats row
+    const statsRow = document.querySelector('.hero-stats');
+    if (statsRow) statsRow.classList.add('anim-stats');
+
+    // About section title
+    const aboutTitle = document.querySelector('#about .section-title');
+    if (aboutTitle) aboutTitle.classList.add('anim-from-left');
+    const aboutLabel = document.querySelector('#about .section-label');
+    if (aboutLabel) aboutLabel.classList.add('anim-from-left');
+
+    // About text (left) and roles (right)
+    const aboutText = document.querySelector('.about-text');
+    if (aboutText) aboutText.classList.add('anim-text-left');
+    const aboutRoles = document.querySelector('.about-roles');
+    if (aboutRoles) aboutRoles.classList.add('anim-from-right');
+
+    // Skills section
+    const skillsTitle = document.querySelector('#skills .section-title');
+    if (skillsTitle) skillsTitle.classList.add('anim-from-left');
+    document.querySelectorAll('.skill-card').forEach((card, i) => {
+      card.classList.add(i % 2 === 0 ? 'anim-card-left' : 'anim-card-right');
+      card.style.transitionDelay = (i * 0.07) + 's';
+    });
+
+    // Projects
+    const projTitle = document.querySelector('#projects .section-title');
+    if (projTitle) projTitle.classList.add('anim-from-left');
+    document.querySelectorAll('.project-card').forEach((card, i) => {
+      const classes = ['anim-card-left', 'anim-card-up', 'anim-card-right'];
+      card.classList.add(classes[i % 3]);
+      card.style.transitionDelay = (i * 0.08) + 's';
+    });
+
+    // Certs
+    const certTitle = document.querySelector('#certifications .section-title');
+    if (certTitle) certTitle.classList.add('anim-from-left');
+    document.querySelectorAll('.cert-card').forEach((card, i) => {
+      card.classList.add(i % 2 === 0 ? 'anim-card-left' : 'anim-card-right');
+      card.style.transitionDelay = (i * 0.06) + 's';
+    });
+
+    // Contact
+    const contactInner = document.querySelector('.contact-inner');
+    if (contactInner) {
+      contactInner.querySelectorAll('h2, p, div').forEach((el, i) => {
+        if (i % 2 === 0) el.classList.add('anim-card-left');
+        else el.classList.add('anim-card-right');
+        el.style.transitionDelay = (i * 0.1) + 's';
+      });
+    }
+
+    // Observe all animated elements
+    const allAnimated = document.querySelectorAll(
+      '.anim-stats, .anim-from-left, .anim-from-right, .anim-text-left, ' +
+      '.anim-card-left, .anim-card-right, .anim-card-up'
+    );
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    allAnimated.forEach(el => obs.observe(el));
+  }
+
+  if (document.readyState === 'complete') {
+    setupScrollAnimations();
+  } else {
+    window.addEventListener('load', setupScrollAnimations);
+  }
+
 </script>
 
 </body>
